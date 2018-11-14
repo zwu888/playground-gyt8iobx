@@ -6,7 +6,7 @@
 struct Node {  // Binary tree
     Node() { std::cout << "c'tor" << std::endl; }
     ~Node() { std::cout << "d'tor" << std::endl; }
-    std::shared_ptr<Node> parent;
+    std::weak_ptr<Node> parent;
     std::shared_ptr<Node> left;
     std::shared_ptr<Node> right;
 };
