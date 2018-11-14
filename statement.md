@@ -1,19 +1,17 @@
-# Welcome!
-
-This C++ template lets you get started quickly with a simple one-page playground.
-
+# Cyclic reference with std::shared_ptr
 ```C++ runnable
 #include <iostream>
-
-using namespace std;
-
-int main() 
-{
-    cout << "Hello, World!";
-    return 0;
+#include <type_traits>
+#include <memory>
+struct Node {  // Binary tree
+    Node() { std::cout << "c'tor" << std::endl; }
+    ~Node() { std::cout << "d'tor" << std::endl; }
+    std::shared_ptr<Node> parent;
+    std::shared_ptr<Node> left;
+    std::shared_ptr<Node> right;
+};
+int main() {
+      auto root = std::make_shared<Node>();
+      root->left = std::make_shared<Node>();
+      root->left->parent = root;
 }
-```
-
-# Advanced usage
-
-If you want a more complex example (external libraries, viewers...), use the [Advanced C++ template](https://tech.io/select-repo/598)
